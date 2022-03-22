@@ -1,7 +1,5 @@
 import requests
 
-from pprint import pprint
-
 class VkUser:
     url = 'https://api.vk.com/method/'
     def __init__(self, token, version):

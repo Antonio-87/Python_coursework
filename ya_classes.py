@@ -2,8 +2,6 @@ import json
 
 import requests
 
-from pprint import pprint
-
 class YaUploader:
     def __init__(self, token: str):
         self.token = token
@@ -13,6 +11,15 @@ class YaUploader:
             'Content-Type': 'application/json',
             'Authorization': 'OAuth {}'.format(self.token)
         }
+
+    def create_folder_disk(self, disk_file_path):
+        upload_url = "https://cloud-api.yandex.net/v1/disk/resources"
+        headers = self.get_headers()
+        params = {"path": disk_file_path}
+        response = requests.put(upload_url, headers=headers, params=params)
+        response.raise_for_status()
+        if response.status_code == 201:
+            print("Success")
     
     def upload_photo(self, disk_file_path, url):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"

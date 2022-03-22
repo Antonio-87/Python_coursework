@@ -17,6 +17,7 @@ def Backup_photo(number_photos=5):
     vk_client = VkUser(token_vk, '5.131')
     result = vk_client.photos_get(user_id)
     uploader = YaUploader(token_ya)
+    uploader.create_folder_disk("VK_photo")
     file_backup_list = []
     url_backup_list = []
     new_file_backup_list = []
@@ -30,8 +31,8 @@ def Backup_photo(number_photos=5):
         url_backup_list.append(url)
     for id, combo in tqdm(enumerate(zip(file_backup_list,url_backup_list), 1)):
         time.sleep(1)
-        if id <= number_photos:
-            result = uploader.upload_photo(f"VK_photo/{combo[0]['file_name']}.jpg",combo[1])
+        if id <= number_photos:            
+            uploader.upload_photo(f"VK_photo/{combo[0]['file_name']}.jpg",combo[1])
             new_file_backup_list.append(combo[0])
         else:
             break
