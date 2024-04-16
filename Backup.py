@@ -13,7 +13,7 @@ def Backup_photo(number_photos=5):
     '''
     user_id = input('Введите id или короткое имя пользователя: ')
     token_ya = input('Введите токен с Полигона Яндекс.Диска: ')
-    token_vk = '958eb5d439726565e9333aa30e50e0f937ee432e927f0dbd541c541887d919a7c56f95c04217915c32008'
+    token_vk = ''
     vk_client = VkUser(token_vk, '5.131')
     result = vk_client.photos_get(user_id)
     uploader = YaUploader(token_ya)
